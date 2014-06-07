@@ -1,49 +1,67 @@
-<?php
-/**
- * The template for displaying Search Results pages
- *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
- */
+<?php get_header(); ?>
 
-get_header(); ?>
+			<div id="content">
 
-	<section id="primary" class="site-content">
-		<div id="content" role="main">
+				<div id="inner-content" class="wrap cf">
 
-		<?php if ( have_posts() ) : ?>
+					<div id="main" class="m-all t-2of3 d-5of7 cf" role="main">
+						<h1 class="archive-title"><span><?php _e( 'Search Results for:', 'bonestheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentytwelve' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header>
+						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-			<?php twentytwelve_content_nav( 'nav-above' ); ?>
+							<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article">
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
+								<header class="article-header">
 
-			<?php twentytwelve_content_nav( 'nav-below' ); ?>
+									<h3 class="search-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 
-		<?php else : ?>
+                  <p class="byline vcard">
+                    <?php printf( __( 'Posted <time class="updated" datetime="%1$s" pubdate>%2$s</time> by <span class="author">%3$s</span>', 'bonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
+                  </p>
 
-			<article id="post-0" class="post no-results not-found">
-				<header class="entry-header">
-					<h1 class="entry-title"><?php _e( 'Nothing Found', 'twentytwelve' ); ?></h1>
-				</header>
+								</header>
 
-				<div class="entry-content">
-					<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'twentytwelve' ); ?></p>
-					<?php get_search_form(); ?>
-				</div><!-- .entry-content -->
-			</article><!-- #post-0 -->
+								<section class="entry-content">
+										<?php the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'bonestheme' ) . '</span>' ); ?>
 
-		<?php endif; ?>
+								</section>
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
+								<footer class="article-footer">
 
-<?php get_sidebar(); ?>
+                  <?php printf( __( 'Filed under: %1$s', 'bonestheme' ), get_the_category_list(', ') ); ?>
+
+                  <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+
+								</footer> <!-- end article footer -->
+
+							</article>
+
+						<?php endwhile; ?>
+
+								<?php bones_page_navi(); ?>
+
+							<?php else : ?>
+
+									<article id="post-not-found" class="hentry cf">
+										<header class="article-header">
+											<h1><?php _e( 'Sorry, No Results.', 'bonestheme' ); ?></h1>
+										</header>
+										<section class="entry-content">
+											<p><?php _e( 'Try your search again.', 'bonestheme' ); ?></p>
+										</section>
+										<footer class="article-footer">
+												<p><?php _e( 'This is the error message in the search.php template.', 'bonestheme' ); ?></p>
+										</footer>
+									</article>
+
+							<?php endif; ?>
+
+						</div>
+
+							<?php get_sidebar(); ?>
+
+					</div>
+
+			</div>
+
 <?php get_footer(); ?>

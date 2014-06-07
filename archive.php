@@ -1,63 +1,99 @@
-<?php
-/**
- * The template for displaying Archive pages
- *
- * Used to display archive-type pages if nothing more specific matches a query.
- * For example, puts together date-based pages if no date.php file exists.
- *
- * If you'd like to further customize these archive views, you may create a
- * new template file for each specific one. For example, Twenty Twelve already
- * has tag.php for Tag archives, category.php for Category archives, and
- * author.php for Author archives.
- *
- * @link http://codex.wordpress.org/Template_Hierarchy
- *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
- */
+<?php get_header(); ?>
 
-get_header(); ?>
+			<div id="content">
 
-	<section id="primary" class="site-content">
-		<div id="content" role="main">
+				<div id="inner-content" class="wrap cf">
 
-		<?php if ( have_posts() ) : ?>
-			<header class="archive-header">
-				<h1 class="archive-title"><?php
-					if ( is_day() ) :
-						printf( __( 'Daily Archives: %s', 'twentytwelve' ), '<span>' . get_the_date() . '</span>' );
-					elseif ( is_month() ) :
-						printf( __( 'Monthly Archives: %s', 'twentytwelve' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'twentytwelve' ) ) . '</span>' );
-					elseif ( is_year() ) :
-						printf( __( 'Yearly Archives: %s', 'twentytwelve' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'twentytwelve' ) ) . '</span>' );
-					else :
-						_e( 'Archives', 'twentytwelve' );
-					endif;
-				?></h1>
-			</header><!-- .archive-header -->
+						<div id="main" class="m-all t-2of3 d-5of7 cf" role="main">
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+							<?php if (is_category()) { ?>
+								<h1 class="archive-title h2">
+									<span><?php _e( 'Posts Categorized:', 'bonestheme' ); ?></span> <?php single_cat_title(); ?>
+								</h1>
 
-				/* Include the post format-specific template for the content. If you want to
-				 * this in a child theme then include a file called called content-___.php
-				 * (where ___ is the post format) and that will be used instead.
-				 */
-				get_template_part( 'content', get_post_format() );
+							<?php } elseif (is_tag()) { ?>
+								<h1 class="archive-title h2">
+									<span><?php _e( 'Posts Tagged:', 'bonestheme' ); ?></span> <?php single_tag_title(); ?>
+								</h1>
 
-			endwhile;
+							<?php } elseif (is_author()) {
+								global $post;
+								$author_id = $post->post_author;
+							?>
+								<h1 class="archive-title h2">
 
-			twentytwelve_content_nav( 'nav-below' );
-			?>
+									<span><?php _e( 'Posts By:', 'bonestheme' ); ?></span> <?php the_author_meta('display_name', $author_id); ?>
 
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
-		<?php endif; ?>
+								</h1>
+							<?php } elseif (is_day()) { ?>
+								<h1 class="archive-title h2">
+									<span><?php _e( 'Daily Archives:', 'bonestheme' ); ?></span> <?php the_time('l, F j, Y'); ?>
+								</h1>
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
+							<?php } elseif (is_month()) { ?>
+									<h1 class="archive-title h2">
+										<span><?php _e( 'Monthly Archives:', 'bonestheme' ); ?></span> <?php the_time('F Y'); ?>
+									</h1>
 
-<?php get_sidebar(); ?>
+							<?php } elseif (is_year()) { ?>
+									<h1 class="archive-title h2">
+										<span><?php _e( 'Yearly Archives:', 'bonestheme' ); ?></span> <?php the_time('Y'); ?>
+									</h1>
+							<?php } ?>
+
+							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
+
+								<header class="article-header">
+
+									<h3 class="h2 entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+									<p class="byline vcard"><?php
+										printf(__( 'Posted', 'bonestheme' ) . ' <time class="updated" datetime="%1$s" pubdate>%2$s</time> ' . __('by', 'bonestheme' ) . ' <span class="author">%3$s</span> <span class="amp">&</span> ' . __('filed under', 'bonestheme') .  ' %4$s.', get_the_time('Y-m-j'), get_the_time(__( 'F jS, Y', 'bonestheme' )), get_the_author_link( get_the_author_meta( 'ID' ) ), get_the_category_list(', '));
+									?></p>
+
+								</header>
+
+								<section class="entry-content cf">
+
+									<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
+
+									<?php the_excerpt(); ?>
+
+								</section>
+
+								<footer class="article-footer">
+
+								</footer>
+
+							</article>
+
+							<?php endwhile; ?>
+
+									<?php bones_page_navi(); ?>
+
+							<?php else : ?>
+
+									<article id="post-not-found" class="hentry cf">
+										<header class="article-header">
+											<h1><?php _e( 'Oops, Post Not Found!', 'bonestheme' ); ?></h1>
+										</header>
+										<section class="entry-content">
+											<p><?php _e( 'Uh Oh. Something is missing. Try double checking things.', 'bonestheme' ); ?></p>
+										</section>
+										<footer class="article-footer">
+												<p><?php _e( 'This is the error message in the archive.php template.', 'bonestheme' ); ?></p>
+										</footer>
+									</article>
+
+							<?php endif; ?>
+
+						</div>
+
+					<?php get_sidebar(); ?>
+
+				</div>
+
+			</div>
+
 <?php get_footer(); ?>
