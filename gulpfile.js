@@ -13,7 +13,7 @@ gulp.task('default', ['sass', 'minifycss'], function() {
 gulp.task('sass', function() {
 	return gulp.src('./library/scss/*.scss')
 	.pipe(sass())
-	.pipe(rename("main.css"))
+	.pipe(rename("style.css"))
 	.pipe(gulp.dest("./library/css"))
 	.pipe(notify('SASS Compiled Succesfully'));;
 });
@@ -21,6 +21,6 @@ gulp.task('sass', function() {
 gulp.task('minifycss', function() {
 	return gulp.src('./library/css/*.css')
 	.pipe(minify())
-	.pipe(rename("main.min.css"))
+	.pipe(rename("style.min.css"))
 	.pipe(gulp.dest("./library/css/min"));
 });
