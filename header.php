@@ -39,17 +39,20 @@
 	<body <?php body_class(); ?>>
 
 		<div class="container">
-
 			<header class="header" role="banner">
 				<div id="inner-header">
-
 					<a class="col-xs-12 col-sm-5 logo" href="<?php echo home_url(); ?>" rel="nofollow">	<img src="<?php echo get_template_directory_uri(); ?>/library/images/logo.png"></a>
-					<div class="col-xs-12 col-sm-7 nav">
-						<a class="nav-item">About</a>
-						<a class="nav-item">Services</a>
-						<a class="nav-item">Location</a>
-						<a class="nav-item">Contact</a>
+					<div class="col-xs-12 col-sm-7 header-left">
+						<div class="call-to-action">
+							Call us today - (360) 907-4470
+						</div>
+						<div class="nav">
+							<a class="nav-item">About</a>
+							<a class="nav-item">Services</a>
+							<a class="nav-item">Location</a>
+							<a class="nav-item">Contact</a>
+						</div>
 					</div>
 				</div>
-
 			</header>
+		</div>

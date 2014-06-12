@@ -1,0 +1,76 @@
+.hero-banner {
+	width: 100%;
+	height:200px;
+	background: #333;
+	color: white;
+	position: relative;
+	margin-bottom: 60px;
+
+	.hero-caption {
+		display: block;
+		margin-top: 40px;
+		height: 200px;
+		text-shadow: 1px 1px 7px rgba(0,0,0,.4);
+		font-size: 250%;
+		.top-line {
+			font-style: italic;
+			font-weight: 100;
+		}
+
+		.bottom-line {
+			padding-left: 40px;
+		}
+	}
+
+	.cta-btn {
+		display: block;
+		position: absolute;
+		bottom: -20px;
+		left: 50%;
+		width: 160px;
+		margin-left: -80px;
+		padding: 10px 0 6px 0;
+		border-radius: 10px;
+		background:$brown;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: .2px;
+		font-weight: 100;
+		font-size: 135%;
+		color: $cream;
+		line-height: 75%;
+
+		&:hover {
+			text-decoration: none;
+		}
+
+		.ph-num {
+			font-size: 65%;
+			font-weight: 100;
+			font-style: italic;
+		}
+	}
+}
+
+.home-content {
+	.widget {
+		margin-bottom: 40px;
+
+		.widget-title {
+			width: 100%;
+			display: block;
+			padding: 10px 20px;
+			border-radius: 5px;
+			background-color: $gray;
+			color: white;
+			font-weight: 100;
+			font-size: 150%;
+			margin-bottom: 20px;
+		}
+
+		.widget-content {
+			padding-left: 11px;
+			line-height: 160%;
+		}
+	}
+}

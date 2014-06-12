@@ -200,6 +200,7 @@ function bones_fonts() {
 
 add_action('wp_print_styles', 'bones_fonts');
 
-
+//Add theme extentions
+require_once( 'library/extentions.php' );
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>
