@@ -4861,6 +4861,37 @@ body {
     .footer .second-footer .copyright a, .footer .second-footer .design-attr a {
       color: #333; }
 
+.lightbox-container {
+  display: block;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0; }
+  .lightbox-container .helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle; }
+  .lightbox-container .tel-popup {
+    display: inline-block;
+    float: none;
+    background-color: white;
+    padding: 20px;
+    position: relative;
+    vertical-align: middle; }
+    .lightbox-container .tel-popup .tel-close {
+      display: block;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      padding: 5px 30px;
+      color: white;
+      background-color: #333; }
+
 @media (max-width: 767px) {
   .header #inner-header {
     padding-top: 20px; }
@@ -4881,7 +4912,13 @@ body {
         text-align: center; }
         .header #inner-header .header-left .nav .menu .menu-item {
           font-size: 150%;
-          border-radius: 0; } }
+          border-radius: 0; }
+  .lightbox-container .tel-popup .tel-close {
+    top: inherit;
+    bottom: -40px;
+    width: 100%;
+    font-size: 120%;
+    padding: 10px 0; } }
 
 .hero-banner {
   width: 100%;

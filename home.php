@@ -1,79 +1,76 @@
-<?php
-/*
- Template Name: Custom Page Example
- *
- * This is your custom page template. You can create as many of these as you need.
- * Simply name is "page-whatever.php" and in add the "Template Name" title at the
- * top, the same way it is here.
- *
- * When you create your page, you can just select the template and viola, you have
- * a custom page template to call your very own. Your mother would be so proud.
- *
- * For more info: http://codex.wordpress.org/Page_Templates
-*/
-?>
-
 <?php get_header(); ?>
 
-			<div id="content">
+
+<?php 
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+$args = array(
+	'posts_per_page'   => 5,
+	'paged'            => $paged,
+	'category'         => '',
+	'orderby'          => 'post_date',
+	'order'            => 'DESC',
+	'include'          => '',
+	'exclude'          => '',
+	'meta_key'         => '',
+	'meta_value'       => '',
+	'post_type'        => 'post',
+	'post_mime_type'   => '',
+	'post_parent'      => '',
+	'post_status'      => 'publish',
+	'suppress_filters' => true );
+ ?>
+
+
+			<div id="content" class="container">
 
 				<div id="inner-content" class="wrap cf">
 
 						<div id="main" class="m-all t-2of3 d-5of7 cf" role="main">
+						<h1 class="h2 entry-title"><?php the_title(); ?></h1>
+							<?php the_post(); the_content(); ?>
 
+							 <?php $temp_query = clone $wp_query; 
+
+							 $wp_query = new WP_Query( $args ); ?>
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
+							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
 
 								<header class="article-header">
 
-									<h1 class="page-title"><?php the_title(); ?></h1>
-
+									<h1 class="h2 entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
 									<p class="byline vcard">
-										<?php printf( __( 'Posted <time class="updated" datetime="%1$s" pubdate>%2$s</time> by <span class="author">%3$s</span>', 'bonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
+										<?php printf( __( 'Posted', 'bonestheme' ) . ' <time class="updated" datetime="%1$s" pubdate>%2$s</time> ' . __('by', 'bonestheme' ) . ' <span class="author">%3$s</span>', get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
 									</p>
-
 
 								</header>
 
-								<section class="entry-content cf" itemprop="articleBody">
-									<?php
-										// the content (pretty self explanatory huh)
-										the_content();
-
-										/*
-										 * Link Pages is used in case you have posts that are set to break into
-										 * multiple pages. You can remove this if you don't plan on doing that.
-										 *
-										 * Also, breaking content up into multiple pages is a horrible experience,
-										 * so don't do it. While there are SOME edge cases where this is useful, it's
-										 * mostly used for people to get more ad views. It's up to you but if you want
-										 * to do it, you're wrong and I hate you. (Ok, I still love you but just not as much)
-										 *
-										 * http://gizmodo.com/5841121/google-wants-to-help-you-avoid-stupid-annoying-multiple-page-articles
-										 *
-										*/
-										wp_link_pages( array(
-											'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'bonestheme' ) . '</span>',
-											'after'       => '</div>',
-											'link_before' => '<span>',
-											'link_after'  => '</span>',
-										) );
-									?>
+								<section class="entry-content cf">
+									<?php the_content(); ?>
 								</section>
 
+								<footer class="article-footer cf">
+									<p class="footer-comment-count">
+										<?php comments_number( __( '<span>No</span> Comments', 'bonestheme' ), __( '<span>One</span> Comment', 'bonestheme' ), _n( '<span>%</span> Comments', '<span>%</span> Comments', get_comments_number(), 'bonestheme' ) );?>
+									</p>
 
-								<footer class="article-footer">
 
-                  <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+                 	<?php printf( '<p class="footer-category">' . __('filed under', 'bonestheme' ) . ': %1$s</p>' , get_the_category_list(', ') ); ?>
+
+                  <?php the_tags( '<p class="footer-tags tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+
 
 								</footer>
 
-								<?php comments_template(); ?>
-
 							</article>
 
-							<?php endwhile; else : ?>
+							<?php endwhile; ?>
+
+									<div class=""><?php next_posts_link( 'Older posts' ); ?></div>
+									<div class=""><?php previous_posts_link( 'Newer posts' ); ?></div>
+
+							<?php else : ?>
 
 									<article id="post-not-found" class="hentry cf">
 											<header class="article-header">
@@ -83,15 +80,14 @@
 												<p><?php _e( 'Uh Oh. Something is missing. Try double checking things.', 'bonestheme' ); ?></p>
 										</section>
 										<footer class="article-footer">
-												<p><?php _e( 'This is the error message in the page-custom.php template.', 'bonestheme' ); ?></p>
+												<p><?php _e( 'This is the error message in the index.php template.', 'bonestheme' ); ?></p>
 										</footer>
 									</article>
 
 							<?php endif; ?>
+							<?php $wp_query = clone $temp_query; ?>
 
 						</div>
-
-						<?php get_sidebar(); ?>
 
 				</div>
 

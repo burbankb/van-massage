@@ -84,6 +84,37 @@ var timeToWaitForLast = 100;
  *
 */
 
+/* A find and replace function for phone number objects.
+ * Will rewrite tel:links to trigger popups instead if
+ * the device doesn't support tap/click-to-call.
+ */
+function checkTelSupport() {
+  if (jQuery("#tel-test a[href*='tel:']").length <= 0) {
+    jQuery("#tel-test").remove();
+    jQuery("a[href*='tel:']").each(function(){
+      var phoneNumber = jQuery(this).attr('href').slice(4);
+      var replLink = 'javascript:tel("'+ phoneNumber +'")';
+      jQuery(this).attr('href', replLink);
+    });
+  } else {
+    jQuery("#tel-test").remove();
+  }
+}
+
+function tel(tel) {
+  jQuery( "body" ).append( "<div id='lightbox' class='lightbox-container'><span class='helper'></span>" + popupCode + "</div>");
+
+  //dynamically insert the phone number and remove the placeholder tag
+  jQuery( "#insert_phone_number" ).before("<span id='the_phone_number'>" + tel + "</span>").remove();
+
+  //close the lightbox when done
+  jQuery( "#lightbox, #tel-close-box" ).click(function(){
+    jQuery("#lightbox").remove();
+  });
+  //clicking the popup won't close it
+  jQuery( "#desktop-tel" ).click(function(){return false;});
+}
+
 /*
  * We're going to swap out the gravatars.
  * In the functions.php file, you can see we're not loading the gravatar
@@ -113,5 +144,7 @@ jQuery(document).ready(function($) {
   */
   loadGravatars();
 
+  //See if the device supports click-to-call
+  checkTelSupport();
 
 }); /* end of as page load scripts */

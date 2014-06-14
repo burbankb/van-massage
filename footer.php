@@ -23,7 +23,7 @@
 				<div class="container">
 					<div class="col-xs-12 col-sm-10">
 						<?php wp_nav_menu( array( 'theme_location' => 'footer-links', 'container_class' => 'footer-links' ) ); ?>
-						<div class="copyright">(c) 2014 Accident &amp; Injury Clinic</div>
+						<div class="copyright">&copy; <?php echo date('Y'); ?> Accident &amp; Injury Clinic</div>
 						<div class="design-attr">Designed by: <a href="http://brandyn.burbankfamily.net">Brandyn Burbank</a></div>
 					</div>
 					<div class="col-xs-12 col-sm-2 aic_logo">

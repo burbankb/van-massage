@@ -6,9 +6,6 @@ Author: Brandyn Burbank
 // LOAD BONES CORE (if you remove this, the theme will break)
 require_once( 'library/bones.php' );
 
-// USE THIS TEMPLATE TO CREATE CUSTOM POST TYPES EASILY
-require_once( 'library/custom-post-type.php' );
-
 // CUSTOMIZE THE WORDPRESS ADMIN (off by default)
 // require_once( 'library/admin.php' );
 
@@ -141,21 +138,6 @@ function bones_comments( $comment, $args, $depth ) {
   <?php // </li> is added by WordPress automatically ?>
 <?php
 } // don't remove this bracket!
-
-
-/*
-This is a modification of a function found in the
-twentythirteen theme where we can declare some
-external fonts. If you're using Google Fonts, you
-can replace these fonts, change it in your scss files
-and be up and running in seconds.
-*/
-function bones_fonts() {
-  wp_register_style('googleFonts', 'http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
-  wp_enqueue_style( 'googleFonts');
-}
-
-add_action('wp_print_styles', 'bones_fonts');
 
 //Add theme extentions
 require_once( 'library/extentions.php' );

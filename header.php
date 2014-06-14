@@ -11,7 +11,7 @@
 		<?php // Google Chrome Frame for IE ?>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title><?php wp_title(''); ?></title>
+		<title><?php wp_title('-','true','LEFT'); ?></title>
 
 		<?php // mobile meta (hooray!) ?>
 		<meta name="HandheldFriendly" content="True">
@@ -30,6 +30,16 @@
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
+		<?php 
+			ob_start();
+			dynamic_sidebar( "Phone Number Popup" ); 
+			$popup_code_block = ob_get_contents(); 
+			ob_end_clean(); 
+			$popup_code_block = trim(preg_replace('/\s+/', ' ', $popup_code_block));
+		?>
+		<script type="text/javascript">
+			var popupCode = '<?php echo $popup_code_block ?>';
+		</script>
 		<?php // wordpress head functions ?>
 		<?php wp_head(); ?>
 		<?php // end of wordpress head ?>
@@ -37,7 +47,7 @@
 	</head>
 
 	<body <?php body_class(); ?>>
-
+		<div id="tel-test" style="display:none;">555 555 5555</div>
 		<div class="container">
 			<header class="header" role="banner">
 				<div id="inner-header">
