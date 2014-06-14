@@ -89,7 +89,7 @@ var timeToWaitForLast = 100;
  * the device doesn't support tap/click-to-call.
  */
 function checkTelSupport() {
-  if (jQuery("#tel-test a[href*='tel:']").length <= 0) {
+  if ((jQuery("#tel-test a[href*='tel:']").length <= 0) && (popupCode)) {
     jQuery("#tel-test").remove();
     jQuery("a[href*='tel:']").each(function(){
       var phoneNumber = jQuery(this).attr('href').slice(4);
@@ -113,8 +113,7 @@ function tel(tel) {
   });
   //clicking the popup won't close it
   jQuery( "#desktop-tel" ).click(function(){return false;});
-}
-
+};
 /*
  * We're going to swap out the gravatars.
  * In the functions.php file, you can see we're not loading the gravatar
