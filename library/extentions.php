@@ -74,8 +74,8 @@ $phone_popup = array(
     'class'         => '',
     'before_widget' => '<div id="desktop-tel" class="tel-popup col-xs-12 col-sm-7">',
     'after_widget'  => '<div id="tel-close-box" class="tel-close">Close</div></div>\n',
-    'before_title'  => '<div class="tel-title">',
-    'after_title'   => "</div>\n",
+    'before_title'  => '<h2 class="tel-title">',
+    'after_title'   => "</h2>\n",
 );
 register_sidebar( $phone_popup );
 
