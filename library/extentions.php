@@ -44,4 +44,30 @@ $home_right = array(
 );
 register_sidebar( $home_right );
 
+$contact_footer = array(
+    'name'          => ("Footer Contact Block"),
+    'id'            => "contact_footer",
+    'description'   => 'Content Block in the Gray Footer',
+    'class'         => '',
+    'before_widget' => '<div class="contact-body">',
+    'after_widget'  => "</div>\n",
+    'before_title'  => '<div class="contact-title">',
+    'after_title'   => "</div>\n",
+);
+register_sidebar( $contact_footer );
+
+// wp menus
+add_theme_support( 'menus' );
+
+// registering menus
+register_nav_menus(
+    array(
+        'main-nav' => __( 'Top Navigation Links (Header)'),   // main nav in header
+        'about-links' => __( 'About Us (Gray Footer)'), // about us links
+        'services-links' => __( 'Our Services (Gray Footer)'), // our services links
+        'connect-links' => __( 'Connect (Gray Footer)'), // connect links
+        'footer-links' => __( 'Footer Links (Above Copyright)') // footer links
+    )
+);
+
 ?>

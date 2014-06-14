@@ -46,12 +46,7 @@
 						<div class="call-to-action">
 							Call us today - (360) 907-4470
 						</div>
-						<div class="nav">
-							<a class="nav-item">About</a>
-							<a class="nav-item">Services</a>
-							<a class="nav-item">Location</a>
-							<a class="nav-item">Contact</a>
-						</div>
+						<?php wp_nav_menu( array( 'theme_location' => 'main-nav', 'container_class' => 'nav' ) ); ?>
 					</div>
 				</div>
 			</header>

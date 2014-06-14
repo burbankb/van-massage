@@ -11,7 +11,6 @@ URL: http://themble.com/bones/
   - head cleanup (remove rsd, uri links, junk css, ect)
   - enqueueing scripts & styles
   - theme support functions
-  - custom menu output & fallbacks
   - related post function
   - page-navi function
   - removing <p> from around images
@@ -207,16 +206,6 @@ function bones_theme_support() {
 		)
 	);
 
-	// wp menus
-	add_theme_support( 'menus' );
-
-	// registering wp3+ menus
-	register_nav_menus(
-		array(
-			'main-nav' => __( 'The Main Menu', 'bonestheme' ),   // main nav in header
-			'footer-links' => __( 'Footer Links', 'bonestheme' ) // secondary nav in footer
-		)
-	);
 } /* end bones theme support */
 
 

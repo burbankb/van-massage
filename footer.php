@@ -3,41 +3,26 @@
 				<div class="container">
 					<div class="col-xs-12 col-sm-3 list-block">
 						<div class="header">About Us</div>
-						<a class="link" href="">Link</a>
-						<a class="link" href="">Link</a>
-						<a class="link" href="">Link</a>
-						<a class="link" href="">Link</a>
+						<?php wp_nav_menu( array( 'theme_location' => 'about-links', 'container_class' => 'act-link' ) ); ?>
 					</div>
 					<div class="col-xs-12 col-sm-3 list-block">
 						<div class="header">Our Services</div>
-						<a class="link" href="">Link</a>
-						<a class="link" href="">Link</a>
-						<a class="link" href="">Link</a>
-						<a class="link" href="">Link</a>
+						<?php wp_nav_menu( array( 'theme_location' => 'services-links', 'container_class' => 'act-link' ) ); ?>
 					</div>
 					<div class="col-xs-12 col-sm-3 list-block">
 						<div class="header">Connect</div>
-						<a class="link" href="">Facebook</a>
-						<a class="link" href="">YouTube</a>
-						<a class="link" href="">Google+</a>
-						<a class="link" href="">Blog</a>
+						<?php wp_nav_menu( array( 'theme_location' => 'connect-links', 'container_class' => 'act-link' ) ); ?>
 					</div>
 					<div class="col-xs-12 col-sm-3 list-block">
 						<div class="header">Contact</div>
-						<div class="contact-title">Accident & Injury Clinic</div>
-						<div class="contact-body">
-						6403 NE 117th Ave #109<br>
-						Vancouver, WA 98662<br>
-						ph: 360.907.4470<br>
-						email: doctor@accidentinjurycare.com
-						</div>
+						<?php dynamic_sidebar( "Footer Contact Block" ); ?>
 					</div>
 				</div>
 			</div>
 			<div class="second-footer">
 				<div class="container">
 					<div class="col-xs-12 col-sm-10">
-						<div class="footer-links">Home | About | Services | Location | Contact</div>
+						<?php wp_nav_menu( array( 'theme_location' => 'footer-links', 'container_class' => 'footer-links' ) ); ?>
 						<div class="copyright">(c) 2014 Accident &amp; Injury Clinic</div>
 						<div class="design-attr">Designed by: <a href="http://brandyn.burbankfamily.net">Brandyn Burbank</a></div>
 					</div>

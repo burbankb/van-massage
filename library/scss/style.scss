@@ -34,26 +34,52 @@ body {
 			padding-right: 8px;
 			font-weight: 100;
 		}
-		.nav {
+		.nav .menu {
 			display:block;
 			position: relative;
 			text-align: right;
 			font-weight: 100;
-			.nav-item {
+			list-style: none;
+			padding: 0;
+			.menu-item {
 				display: inline-block;
-				cursor: pointer;
-				color: white;
-				padding:8px 10px;
+				position: relative;
+				padding: 8px 10px;
 				margin: 0 5px;
+				cursor: pointer;
 				border-radius: 5px;
-				text-transform: uppercase;
-				color: $brown;
-				&:hover {
-					color: $cream;
-					background-color: $brown;
-					text-decoration: none;
+				a {
+					text-transform: uppercase;
+					color: $brown;
 				}
+				.sub-menu {
+					display:none;
+					position: absolute;
+					left:0;
+					padding: 0;
+					background-color: $brown;
+					padding-top: 5px;
+					padding-right:40px;
+					z-index: 99;
+					.menu-item {
+						font-size: 90%;
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+				&:hover {
+					background-color: $brown;
+					a { 
+						text-decoration: none;
+						color: $cream;
+					}
+					.sub-menu {
+						display: block;
+					}
+				}		
 			}
+
 		}
 	}
 }
@@ -75,12 +101,16 @@ body {
 					font-size:116%;
 				}
 			}
-			.link {
+			.act-link .menu, .link {
 				display: block;
-				color: $gray;
+				list-style: none;
+				padding-left: 0;
+				a {
+					color: $gray;
+				}
 			}
 			.contact-title {
-				font-size: 120%;
+				font-size: 130%;
 			}
 			.contact-body {
 				font-size: 90%;
@@ -92,11 +122,26 @@ body {
 		.aic_logo {
 			text-align: right;
 		}
-		.footer-links {
+		.footer-links .menu {
 			margin-bottom: 10px;
+			padding:0;
+			list-style: none;
+			.menu-item {
+				display:inline-block;
+				a {
+					color: $black;
+				}
+				&:before {
+					content: "| ";
+				}
+				&:first-child:before {
+					content: "";
+				}
+			}
 		}
 		.copyright, .design-attr {
 			font-size: 90%;
+			a {color:$black;}
 		}
 	}
 }
@@ -119,11 +164,11 @@ body {
 				font-weight: 400;
 				padding: 10px 0;
 			}
-			.nav {
+			.nav .menu{
 				border-top:1px solid $green;
 				border-bottom:1px solid $green;
 				text-align: center;
-				.nav-item {
+				.menu-item {
 					font-size: 150%;
 					border-radius: 0;
 				}
