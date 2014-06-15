@@ -4879,7 +4879,7 @@ body {
   .lightbox-container .tel-popup {
     display: inline-block;
     float: none;
-    background-color: white;
+    background-color: #f8fae5;
     padding: 20px;
     position: relative;
     vertical-align: middle; }
