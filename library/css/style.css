@@ -4945,6 +4945,7 @@ body {
       .hero-banner .hero-caption .hero-img img {
         margin: -10px;
         width: 110%;
+        min-height: 110%;
         -webkit-filter: blur(6px);
         -moz-filter: blur(6px);
         -o-filter: blur(6px);

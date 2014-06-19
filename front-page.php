@@ -3,8 +3,7 @@
 			<div class="hero-banner">
 				<div class="container">
 				<div class="hero-caption">
-					<span class="top-line">Healing from accident&nbsp;and&nbsp;injury</span><br><span class="bottom-line">can start today.</span> 
-					<div class="hero-img"><img src="wp-content/themes/vanmassage/library/images/sunset.jpg"></div> 
+					<?php dynamic_sidebar( "Hero Banner" ); ?>
 				</div>
 				<a href="tel:+1 360-907-4470" class="cta-btn">Call Today<br>
 					<span class="ph-num">(360) 907-4470</span>

@@ -79,6 +79,16 @@ $phone_popup = array(
 );
 register_sidebar( $phone_popup );
 
+$hero_banner = array(
+    'name'          => ("Hero Banner"),
+    'id'            => "hero-banner",
+    'description'   => 'Content for the main "hero banner" area on the homepage',
+    'class'         => '',
+    'before_widget' => '<div id="hero-message">',
+    'after_widget'  => '</div>'
+);
+register_sidebar( $hero_banner );
+
 // wp menus
 add_theme_support( 'menus' );
 
