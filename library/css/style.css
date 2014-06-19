@@ -4762,10 +4762,12 @@ body {
   font-family: 'Open Sans', sans-serif; }
 
 .alignright {
-  float: right; }
+  float: right;
+  padding-left: 11px; }
 
 .alignleft {
-  float: left; }
+  float: left;
+  padding-right: 11px; }
 
 .header #inner-header {
   overflow: hidden;
