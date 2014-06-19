@@ -15,12 +15,21 @@ body {
 //Styles for cms side layout
 .alignright {
 	float: right;
-	padding-left: 11px;
+	margin-left: 15px;
+	box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+
 }
 .alignleft {
 	float: left;
-	padding-right: 11px;
+	margin-right: 15px;
+	box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
+.alignleft, .alignright {
+	&.no-shadow {
+		box-shadow: none;
+	}
+}
+
 // Header Styles
 .header #inner-header {
 	overflow: hidden;
