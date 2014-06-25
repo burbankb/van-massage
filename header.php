@@ -44,6 +44,7 @@
 		<?php wp_head(); ?>
 		<?php // end of wordpress head ?>
 
+		<?php require_once("library/google-analytics.php"); ?>
 	</head>
 
 	<body <?php body_class(); ?>>
